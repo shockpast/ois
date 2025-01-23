@@ -1,0 +1,8 @@
+services:
+  ois:
+    restart: unless-stopped
+    build: .
+    environment:
+      - PORT=1337
+    ports:
+      - 1337:1337
