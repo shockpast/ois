@@ -1,3 +1,11 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+div>::-webkit-scrollbar {
+  width: 5px;
+}
+
+div>::-webkit-scrollbar-thumb {
+  background: #1d1d1d;
+}
