@@ -2,6 +2,8 @@ import { GameDig } from "gamedig"
 
 import type { PageServerLoad } from "./$types"
 
+type Player = { name: string, raw: { score: number; time: number } }
+
 const servers = [
   "128.140.90.181:27015",
   "128.140.90.181:27016",
@@ -32,7 +34,8 @@ export const load: PageServerLoad = async () => {
       match.shift()
 
       const name = match[0]
-      const players = JSON.parse(JSON.stringify(query.players))
+      const players = JSON.parse(JSON.stringify(query.players)) as Player[]
+      players.filter((player) => player.name.length >= 1)
 
       data.push({ name, address, port, players: players, maxplayers: query.maxplayers, map: query.map })
     } catch (error) {
