@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte"
+  // import consola from "consola"
 
   import { friendlyTime, getServerInfo } from "$lib/utilities"
   import type { Server } from "$lib/types"
@@ -18,13 +19,23 @@
 
   const data: Server[] = $state([])
 
-  onMount(async () => {
+  async function fetch() {
+    let i = 0
+
     for (const server of servers) {
       const [address, port] = server.split(":")
       const json = await getServerInfo(address, port)
 
-      data.push(json)
+      data[i++] = json
+
+      // consola.info(`Updated ${json.data.name} at ${new Date().toUTCString()}`)
+      // consola.info(`${json.data.players.length}/${json.data.maxplayers} on ${json.data.map}`)
     }
+  }
+
+  onMount(async () => {
+    await fetch()
+    setInterval(async () => await fetch(), 5000)
   })
 </script>
 
