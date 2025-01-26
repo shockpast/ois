@@ -25,6 +25,7 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
+		"consola": "^3.4.0",
 		"gamedig": "^5.1.4"
 	}
 }

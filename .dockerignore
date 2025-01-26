@@ -1,5 +1,6 @@
 node_modules
 .svelte-kit
 vite.config.ts.timestamp-*
-.env
-.env.*
+package-lock.json
+build
+bun.lockb
